@@ -197,7 +197,7 @@ namespace FacelessNarrationTool
             {
                 FNarrationTable narrationTable = FNarrationTool.NarrationTable;
 
-                if (narrationTable != null && e.RowIndex > 0 && e.RowIndex < narrationTable.Files.Count)
+                if (narrationTable != null && e.RowIndex >= 0 && e.RowIndex < narrationTable.Files.Count)
                 {
                     narrationTable.Files[e.RowIndex].FileName = dgNarrationFiles.Rows[e.RowIndex].Cells[0].Value.ToString();
                 }
