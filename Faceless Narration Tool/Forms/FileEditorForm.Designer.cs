@@ -1,4 +1,4 @@
-﻿namespace FacelessNarrationTool
+﻿namespace FacelessNarrationTool.Forms
 {
     partial class FileEditorForm
     {
@@ -201,7 +201,6 @@
             this.Controls.Add(this.msEditor);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msEditor;
-            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(300, 900);
             this.MinimumSize = new System.Drawing.Size(300, 200);
             this.Name = "FileEditorForm";

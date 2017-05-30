@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FacelessUtils;
 using System.IO;
+using FacelessNarrationTool.Forms;
 
 namespace FacelessNarrationTool
 {
@@ -13,6 +14,12 @@ namespace FacelessNarrationTool
         private static StartupForm _StartupForm;
         private static FileEditorForm _FileEditorForm;
         private static LineEditorForm _LineEditorForm;
+
+        private static string _FMODBasePath = "FMODEvent'/Game/FMOD/Events/";
+        public static string FMODBasePath
+        {
+            get { return _FMODBasePath; }
+        }
 
         private static FNarrationTable _NarrationTable;
         public static FNarrationTable NarrationTable

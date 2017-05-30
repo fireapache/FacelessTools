@@ -11,7 +11,7 @@ using FacelessUtils;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace FacelessNarrationTool
+namespace FacelessNarrationTool.Forms
 {
     public partial class FileEditorForm : Form
     {
@@ -114,7 +114,8 @@ namespace FacelessNarrationTool
 
         private void PreviewCSVFile()
         {
-            MessageBox.Show("Feature not implemented yet!");
+            CSVPreviewerForm csvPreviewer = new CSVPreviewerForm(FNarrationTool.NarrationTable, FNarrationTool.FMODBasePath);
+            csvPreviewer.ShowDialog();
         }
 
         private void SaveFile()
