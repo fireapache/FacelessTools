@@ -41,8 +41,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSaveAs = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiPreviewCSV = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiExportCSV = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPreviewTable = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiExportTable = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsNarrationFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditLines = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAddFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,8 +126,8 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiSave,
             this.tsmiSaveAs,
-            this.tsmiPreviewCSV,
-            this.tsmiExportCSV});
+            this.tsmiPreviewTable,
+            this.tsmiExportTable});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -135,30 +135,30 @@
             // tsmiSave
             // 
             this.tsmiSave.Name = "tsmiSave";
-            this.tsmiSave.Size = new System.Drawing.Size(139, 22);
+            this.tsmiSave.Size = new System.Drawing.Size(152, 22);
             this.tsmiSave.Text = "Save";
             this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
             // 
             // tsmiSaveAs
             // 
             this.tsmiSaveAs.Name = "tsmiSaveAs";
-            this.tsmiSaveAs.Size = new System.Drawing.Size(139, 22);
+            this.tsmiSaveAs.Size = new System.Drawing.Size(152, 22);
             this.tsmiSaveAs.Text = "Save As";
             this.tsmiSaveAs.Click += new System.EventHandler(this.tsmiSaveAs_Click);
             // 
-            // tsmiPreviewCSV
+            // tsmiPreviewTable
             // 
-            this.tsmiPreviewCSV.Name = "tsmiPreviewCSV";
-            this.tsmiPreviewCSV.Size = new System.Drawing.Size(139, 22);
-            this.tsmiPreviewCSV.Text = "Preview CSV";
-            this.tsmiPreviewCSV.Click += new System.EventHandler(this.tsmiPreviewCSV_Click);
+            this.tsmiPreviewTable.Name = "tsmiPreviewTable";
+            this.tsmiPreviewTable.Size = new System.Drawing.Size(152, 22);
+            this.tsmiPreviewTable.Text = "Preview Table";
+            this.tsmiPreviewTable.Click += new System.EventHandler(this.tsmiPreviewTable_Click);
             // 
-            // tsmiExportCSV
+            // tsmiExportTable
             // 
-            this.tsmiExportCSV.Name = "tsmiExportCSV";
-            this.tsmiExportCSV.Size = new System.Drawing.Size(139, 22);
-            this.tsmiExportCSV.Text = "Export CSV";
-            this.tsmiExportCSV.Click += new System.EventHandler(this.tsmiExportCSV_Click);
+            this.tsmiExportTable.Name = "tsmiExportTable";
+            this.tsmiExportTable.Size = new System.Drawing.Size(152, 22);
+            this.tsmiExportTable.Text = "Export Table";
+            this.tsmiExportTable.Click += new System.EventHandler(this.tsmiExportTable_Click);
             // 
             // cmsNarrationFiles
             // 
@@ -228,11 +228,11 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiSave;
         private System.Windows.Forms.ToolStripMenuItem tsmiSaveAs;
-        private System.Windows.Forms.ToolStripMenuItem tsmiExportCSV;
+        private System.Windows.Forms.ToolStripMenuItem tsmiExportTable;
         private System.Windows.Forms.ContextMenuStrip cmsNarrationFiles;
         private System.Windows.Forms.ToolStripMenuItem tsmiAddFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiRemoveFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditLines;
-        private System.Windows.Forms.ToolStripMenuItem tsmiPreviewCSV;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPreviewTable;
     }
 }

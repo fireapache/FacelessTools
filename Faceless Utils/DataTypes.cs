@@ -6,23 +6,36 @@ namespace FacelessUtils
     public class FNarrationTable
     {
         public string FMODFolderPath;
-        public List<FNarractionFile> Files;
+        public List<FNarrationEvent> Files;
 
         public FNarrationTable()
         {
-            Files = new List<FNarractionFile>();
+            Files = new List<FNarrationEvent>();
         }
 
     }
 
-    public class FNarractionFile
+    public class FNarrationEvent
     {
         public string FileName;
         public List<FNarrationLine> Lines;
 
-        public FNarractionFile()
+        public FNarrationEvent()
         {
             Lines = new List<FNarrationLine>();
+        }
+
+    }
+    
+    public class FNarrationFile
+    {
+        public string Name;
+        public string FMODEvent;
+        public List<FNarrationLine> Texts;
+
+        public FNarrationFile()
+        {
+            Texts = new List<FNarrationLine>();
         }
 
     }

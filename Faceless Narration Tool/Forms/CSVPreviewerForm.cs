@@ -40,7 +40,7 @@ namespace FacelessNarrationTool.Forms
 
             if (_NarrationTable != null)
             {
-                List<FNarractionFile> files = _NarrationTable.Files;
+                List<FNarrationEvent> files = _NarrationTable.Files;
                 string FMODFolderPath = _NarrationTable.FMODFolderPath;
 
                 for (int i = 0; i < files.Count; i++)

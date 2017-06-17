@@ -49,7 +49,7 @@ namespace FacelessNarrationTool.Forms
             {
                 dgNarrationFiles.Rows.Clear();
 
-                foreach (FNarractionFile file in narrationTable.Files)
+                foreach (FNarrationEvent file in narrationTable.Files)
                 {
                     dgNarrationFiles.Rows.Add(file.FileName, file.Lines.Count);
                 }
@@ -78,7 +78,7 @@ namespace FacelessNarrationTool.Forms
                     rowIndex = dgNarrationFiles.CurrentRow.Index;
                 }
                 
-                narrationTable.Files.Insert(rowIndex + 1, new FNarractionFile() { FileName = "INSERT_NAME" });
+                narrationTable.Files.Insert(rowIndex + 1, new FNarrationEvent() { FileName = "INSERT_NAME" });
             }
 
             UpdateDataGrid();
@@ -107,12 +107,66 @@ namespace FacelessNarrationTool.Forms
             UpdateDataGrid();
         }
 
-        private void ExportCSVFile()
+        private void ExportJSONFile()
         {
-            MessageBox.Show("Feature not implemented yet!");
+            FNarrationTable narrationTable = FNarrationTool.NarrationTable;
+            string FMODBasePath = FNarrationTool.FMODBasePath;
+
+            if (narrationTable != null)
+            {
+                List<FNarrationEvent> events = narrationTable.Files;
+                List<FNarrationFile> files = new List<FNarrationFile>();
+                string FMODFolderPath = narrationTable.FMODFolderPath;
+                string name, FMODPath;
+
+                for (int i = 0; i < events.Count; i++)
+                {
+                    name = i.ToString();
+                    FMODPath = FMODBasePath + FMODFolderPath + events[i].FileName + '.' + events[i].FileName + '\'';
+                    files.Add(new FNarrationFile
+                    {
+                        Name = name,
+                        FMODEvent = FMODPath,
+                        Texts = events[i].Lines
+                    });
+                }
+
+                SaveFileDialog csvFileDialog = new SaveFileDialog()
+                {
+                    Filter = "JSON file (*.json)|*.json",
+                    RestoreDirectory = true
+                };
+
+                if (csvFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    StreamWriter csvFile;
+                    
+                    try
+                    {
+                        string filename = csvFileDialog.FileName;
+                        csvFile = new StreamWriter(filename);
+
+                        using (csvFile)
+                        {
+                            
+                            csvFile.WriteLine(JsonConvert.SerializeObject(files));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Error: Could not load Narration Table.");
+                Close();
+            }
         }
 
-        private void PreviewCSVFile()
+        private void PreviewTable()
         {
             CSVPreviewerForm csvPreviewer = new CSVPreviewerForm(FNarrationTool.NarrationTable, FNarrationTool.FMODBasePath);
             csvPreviewer.ShowDialog();
@@ -238,14 +292,14 @@ namespace FacelessNarrationTool.Forms
 
         }
 
-        private void tsmiPreviewCSV_Click(object sender, EventArgs e)
+        private void tsmiPreviewTable_Click(object sender, EventArgs e)
         {
-            PreviewCSVFile();
+            PreviewTable();
         }
 
-        private void tsmiExportCSV_Click(object sender, EventArgs e)
+        private void tsmiExportTable_Click(object sender, EventArgs e)
         {
-            ExportCSVFile();
+            ExportJSONFile();
         }
         
         private void tbFMODPath_TextChanged(object sender, EventArgs e)
