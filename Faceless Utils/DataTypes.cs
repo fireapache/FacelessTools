@@ -13,6 +13,38 @@ namespace FacelessUtils
             Files = new List<FNarrationEvent>();
         }
 
+        public FNarrationTable(List<FNarrationFile> narrationFiles)
+        {
+            Files = new List<FNarrationEvent>();
+
+            if (narrationFiles.Count > 0)
+            {
+                FMODFolderPath = "";
+                char[] separators = { '\'', '.', '/' };
+
+                foreach (FNarrationFile file in narrationFiles)
+                {
+                    if (file.FMODEvent == "None")
+                    {
+                        Files.Add(new FNarrationEvent());
+                    }
+                    else
+                    {
+                        string[] strPieces = file.FMODEvent.Split(separators);
+
+                        if (FMODFolderPath == "")
+                        {
+                            for (int i = 5; i < strPieces.Length - 3; i++)
+                            {
+                                FMODFolderPath += strPieces[i] + '/';
+                            }
+                        }
+
+                        Files.Add(new FNarrationEvent(file, strPieces[strPieces.Length - 2]));
+                    }
+                }
+            }
+        }
     }
 
     public class FNarrationEvent
@@ -20,13 +52,25 @@ namespace FacelessUtils
         public string FileName;
         public List<FNarrationLine> Lines;
 
-        public FNarrationEvent()
+        public FNarrationEvent(string defaultFileName = "None")
         {
+            FileName = defaultFileName;
             Lines = new List<FNarrationLine>();
+        }
+
+        public FNarrationEvent(FNarrationFile narrationFile, string defaultFileName = "None")
+        {
+            FileName = defaultFileName;
+            Lines = narrationFile.Texts;
         }
 
     }
     
+    public class FNarrationJsonFile
+    {
+        public List<FNarrationFile> NarrationFiles;
+    }
+
     public class FNarrationFile
     {
         public string Name;

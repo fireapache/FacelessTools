@@ -42,7 +42,6 @@
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPreviewTable = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiExportTable = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsNarrationFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditLines = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAddFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +64,7 @@
             this.Lines});
             this.dgNarrationFiles.Location = new System.Drawing.Point(12, 53);
             this.dgNarrationFiles.Name = "dgNarrationFiles";
-            this.dgNarrationFiles.Size = new System.Drawing.Size(260, 234);
+            this.dgNarrationFiles.Size = new System.Drawing.Size(310, 196);
             this.dgNarrationFiles.TabIndex = 0;
             this.dgNarrationFiles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgNarrationFiles_CellValueChanged);
             this.dgNarrationFiles.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgNarrationFiles_MouseClick);
@@ -77,7 +76,7 @@
             this.FileName.HeaderText = "File Name";
             this.FileName.Name = "FileName";
             this.FileName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FileName.Width = 150;
+            this.FileName.Width = 200;
             // 
             // Lines
             // 
@@ -95,9 +94,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFMODPath.Location = new System.Drawing.Point(114, 27);
             this.tbFMODPath.Name = "tbFMODPath";
-            this.tbFMODPath.Size = new System.Drawing.Size(158, 20);
+            this.tbFMODPath.Size = new System.Drawing.Size(208, 20);
             this.tbFMODPath.TabIndex = 1;
-            this.tbFMODPath.TextChanged += new System.EventHandler(this.tbFMODPath_TextChanged);
+            this.tbFMODPath.Leave += new System.EventHandler(this.TbFMODPath_Leave);
             // 
             // lblFMODPath
             // 
@@ -106,9 +105,9 @@
             this.lblFMODPath.AutoSize = true;
             this.lblFMODPath.Location = new System.Drawing.Point(12, 30);
             this.lblFMODPath.Name = "lblFMODPath";
-            this.lblFMODPath.Size = new System.Drawing.Size(98, 13);
+            this.lblFMODPath.Size = new System.Drawing.Size(100, 13);
             this.lblFMODPath.TabIndex = 2;
-            this.lblFMODPath.Text = "FMOD Folder Path:";
+            this.lblFMODPath.Text = "Events Folder Path:";
             this.lblFMODPath.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // msEditor
@@ -117,7 +116,7 @@
             this.fileToolStripMenuItem});
             this.msEditor.Location = new System.Drawing.Point(0, 0);
             this.msEditor.Name = "msEditor";
-            this.msEditor.Size = new System.Drawing.Size(284, 24);
+            this.msEditor.Size = new System.Drawing.Size(334, 24);
             this.msEditor.TabIndex = 3;
             this.msEditor.Text = "msEditor";
             // 
@@ -126,8 +125,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiSave,
             this.tsmiSaveAs,
-            this.tsmiPreviewTable,
-            this.tsmiExportTable});
+            this.tsmiPreviewTable});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -135,30 +133,23 @@
             // tsmiSave
             // 
             this.tsmiSave.Name = "tsmiSave";
-            this.tsmiSave.Size = new System.Drawing.Size(152, 22);
+            this.tsmiSave.Size = new System.Drawing.Size(145, 22);
             this.tsmiSave.Text = "Save";
             this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
             // 
             // tsmiSaveAs
             // 
             this.tsmiSaveAs.Name = "tsmiSaveAs";
-            this.tsmiSaveAs.Size = new System.Drawing.Size(152, 22);
+            this.tsmiSaveAs.Size = new System.Drawing.Size(145, 22);
             this.tsmiSaveAs.Text = "Save As";
             this.tsmiSaveAs.Click += new System.EventHandler(this.tsmiSaveAs_Click);
             // 
             // tsmiPreviewTable
             // 
             this.tsmiPreviewTable.Name = "tsmiPreviewTable";
-            this.tsmiPreviewTable.Size = new System.Drawing.Size(152, 22);
+            this.tsmiPreviewTable.Size = new System.Drawing.Size(145, 22);
             this.tsmiPreviewTable.Text = "Preview Table";
             this.tsmiPreviewTable.Click += new System.EventHandler(this.tsmiPreviewTable_Click);
-            // 
-            // tsmiExportTable
-            // 
-            this.tsmiExportTable.Name = "tsmiExportTable";
-            this.tsmiExportTable.Size = new System.Drawing.Size(152, 22);
-            this.tsmiExportTable.Text = "Export Table";
-            this.tsmiExportTable.Click += new System.EventHandler(this.tsmiExportTable_Click);
             // 
             // cmsNarrationFiles
             // 
@@ -194,15 +185,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 299);
+            this.ClientSize = new System.Drawing.Size(334, 261);
             this.Controls.Add(this.lblFMODPath);
             this.Controls.Add(this.tbFMODPath);
             this.Controls.Add(this.dgNarrationFiles);
             this.Controls.Add(this.msEditor);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msEditor;
-            this.MaximumSize = new System.Drawing.Size(300, 900);
-            this.MinimumSize = new System.Drawing.Size(300, 200);
+            this.MaximumSize = new System.Drawing.Size(350, 10000);
+            this.MinimumSize = new System.Drawing.Size(350, 300);
             this.Name = "FileEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Faceless Narration Tool";
@@ -222,17 +213,16 @@
         private System.Windows.Forms.DataGridView dgNarrationFiles;
         private System.Windows.Forms.TextBox tbFMODPath;
         private System.Windows.Forms.Label lblFMODPath;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lines;
         private System.Windows.Forms.MenuStrip msEditor;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiSave;
         private System.Windows.Forms.ToolStripMenuItem tsmiSaveAs;
-        private System.Windows.Forms.ToolStripMenuItem tsmiExportTable;
         private System.Windows.Forms.ContextMenuStrip cmsNarrationFiles;
         private System.Windows.Forms.ToolStripMenuItem tsmiAddFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiRemoveFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditLines;
         private System.Windows.Forms.ToolStripMenuItem tsmiPreviewTable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Lines;
     }
 }

@@ -60,7 +60,7 @@
             this.TextLine});
             this.dgNarrationLines.Location = new System.Drawing.Point(13, 27);
             this.dgNarrationLines.Name = "dgNarrationLines";
-            this.dgNarrationLines.Size = new System.Drawing.Size(559, 153);
+            this.dgNarrationLines.Size = new System.Drawing.Size(959, 222);
             this.dgNarrationLines.TabIndex = 0;
             this.dgNarrationLines.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgNarrationLines_MouseClick);
             // 
@@ -70,7 +70,7 @@
             this.optionsToolStripMenuItem});
             this.msLineEditor.Location = new System.Drawing.Point(0, 0);
             this.msLineEditor.Name = "msLineEditor";
-            this.msLineEditor.Size = new System.Drawing.Size(584, 24);
+            this.msLineEditor.Size = new System.Drawing.Size(984, 24);
             this.msLineEditor.TabIndex = 1;
             this.msLineEditor.Text = "Line Editor Menu";
             // 
@@ -137,20 +137,20 @@
             this.TextLine.HeaderText = "Text Line";
             this.TextLine.Name = "TextLine";
             this.TextLine.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TextLine.Width = 450;
+            this.TextLine.Width = 800;
             // 
             // LineEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 192);
+            this.ClientSize = new System.Drawing.Size(984, 261);
             this.Controls.Add(this.dgNarrationLines);
             this.Controls.Add(this.msLineEditor);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msLineEditor;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(800, 600);
-            this.MinimumSize = new System.Drawing.Size(600, 170);
+            this.MaximumSize = new System.Drawing.Size(1000, 600);
+            this.MinimumSize = new System.Drawing.Size(1000, 300);
             this.Name = "LineEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Line Editor";

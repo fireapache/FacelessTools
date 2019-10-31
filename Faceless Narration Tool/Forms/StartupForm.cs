@@ -46,11 +46,11 @@ namespace FacelessNarrationTool
 
                         string fileString = Encoding.UTF8.GetString(fileBytes);
 
-                        FNarrationTable narrationTable = JsonConvert.DeserializeObject<FNarrationTable>(fileString);
+                        List<FNarrationFile> narrationFiles = JsonConvert.DeserializeObject<List<FNarrationFile>> (fileString);
 
-                        if (narrationTable != null)
+                        if (narrationFiles != null)
                         {
-                            FNarrationTool.OpenEditor(narrationTable);
+                            FNarrationTool.OpenEditor(new FNarrationTable(narrationFiles));
                         }
                         else
                         {

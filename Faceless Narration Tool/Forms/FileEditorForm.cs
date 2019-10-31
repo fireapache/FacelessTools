@@ -107,63 +107,60 @@ namespace FacelessNarrationTool.Forms
             UpdateDataGrid();
         }
 
-        private void ExportJSONFile()
+        private void SaveJsonFile()
         {
-            FNarrationTable narrationTable = FNarrationTool.NarrationTable;
-            string FMODBasePath = FNarrationTool.FMODBasePath;
-
-            if (narrationTable != null)
+            if (FNarrationTool.JsonFilePath != null)
             {
-                List<FNarrationEvent> events = narrationTable.Files;
-                List<FNarrationFile> files = new List<FNarrationFile>();
-                string FMODFolderPath = narrationTable.FMODFolderPath;
-                string name, FMODPath;
+                FNarrationTable narrationTable = FNarrationTool.NarrationTable;
+                string FMODBasePath = FNarrationTool.FMODBasePath;
 
-                for (int i = 0; i < events.Count; i++)
+                if (narrationTable != null)
                 {
-                    name = i.ToString();
-                    FMODPath = FMODBasePath + FMODFolderPath + events[i].FileName + '.' + events[i].FileName + '\'';
-                    files.Add(new FNarrationFile
+                    List<FNarrationEvent> events = narrationTable.Files;
+                    List<FNarrationFile> files = new List<FNarrationFile>();
+                    string FMODFolderPath = narrationTable.FMODFolderPath;
+                    string name, FMODPath;
+
+                    for (int i = 0; i < events.Count; i++)
                     {
-                        Name = name,
-                        FMODEvent = FMODPath,
-                        Texts = events[i].Lines
-                    });
-                }
+                        name = i.ToString();
+                        FMODPath = FMODBasePath + FMODFolderPath + events[i].FileName + '.' + events[i].FileName + '\'';
+                        files.Add(new FNarrationFile
+                        {
+                            Name = name,
+                            FMODEvent = FMODPath,
+                            Texts = events[i].Lines
+                        });
+                    }
 
-                SaveFileDialog csvFileDialog = new SaveFileDialog()
-                {
-                    Filter = "JSON file (*.json)|*.json",
-                    RestoreDirectory = true
-                };
+                    StreamWriter jsonStreamWriter;
 
-                if (csvFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    StreamWriter csvFile;
-                    
                     try
                     {
-                        string filename = csvFileDialog.FileName;
-                        csvFile = new StreamWriter(filename);
+                        jsonStreamWriter = new StreamWriter(FNarrationTool.JsonFilePath);
 
-                        using (csvFile)
+                        using (jsonStreamWriter)
                         {
-                            
-                            csvFile.WriteLine(JsonConvert.SerializeObject(files));
+                            jsonStreamWriter.WriteLine(JsonConvert.SerializeObject(files));
                         }
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
-                }
 
+                }
+                else
+                {
+                    MessageBox.Show("Error: Could not load Narration Table.");
+                    Close();
+                }
             }
             else
             {
-                MessageBox.Show("Error: Could not load Narration Table.");
-                Close();
+                MessageBox.Show("No file path to save!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void PreviewTable()
@@ -172,47 +169,7 @@ namespace FacelessNarrationTool.Forms
             csvPreviewer.ShowDialog();
         }
 
-        private void SaveFile()
-        {
-            FNarrationTable narrationTable = FNarrationTool.NarrationTable;
-            string jsonFilePath = FNarrationTool.JsonFilePath;
-
-            if (jsonFilePath != null)
-            {
-                FileStream jsonStream = File.Open(FNarrationTool.JsonFilePath, FileMode.Create);
-
-                if (jsonStream == null)
-                {
-                    MessageBox.Show("Error: Can not open target file!");
-                }
-                else if (narrationTable != null)
-                {
-                    string jsonString = JsonConvert.SerializeObject(narrationTable);
-
-                    byte[] jsonBytes = Encoding.ASCII.GetBytes(jsonString);
-
-                    using (jsonStream)
-                    {
-                        jsonStream.Write(jsonBytes, 0, jsonBytes.Length);
-                    }
-
-                    MessageBox.Show("File Saved Successfully!");
-
-                }
-                else
-                {
-                    MessageBox.Show("Error: Narration Table is missing!");
-                }
-
-            }
-            else
-            {
-                SaveFileAs();
-            }
-            
-        }
-
-        private void SaveFileAs()
+        private void SaveJsonFileAs()
         {
             SaveFileDialog jsonFileDialog = new SaveFileDialog()
             {
@@ -228,7 +185,7 @@ namespace FacelessNarrationTool.Forms
                 {
                     jsonStream.Close();
                     FNarrationTool.JsonFilePath = jsonFileDialog.FileName;
-                    SaveFile();
+                    SaveJsonFile();
                 }
                 else
                 {
@@ -262,12 +219,12 @@ namespace FacelessNarrationTool.Forms
 
         private void tsmiSave_Click(object sender, EventArgs e)
         {
-            SaveFile();
+            SaveJsonFile();
         }
 
         private void tsmiSaveAs_Click(object sender, EventArgs e)
         {
-            SaveFileAs();
+            SaveJsonFileAs();
         }
 
         private void tsmiAddFile_Click(object sender, EventArgs e)
@@ -297,13 +254,28 @@ namespace FacelessNarrationTool.Forms
             PreviewTable();
         }
 
-        private void tsmiExportTable_Click(object sender, EventArgs e)
+        private void TbFMODPath_Leave(object sender, EventArgs e)
         {
-            ExportJSONFile();
-        }
-        
-        private void tbFMODPath_TextChanged(object sender, EventArgs e)
-        {
+            string correctedPath;
+            char[] trimChars = { ' ', '.', ',' };
+            char[] trimStartChars = { '/' };
+
+            correctedPath = tbFMODPath.Text.Trim(trimChars);
+            correctedPath = correctedPath.TrimStart(trimStartChars);
+            correctedPath = correctedPath.TrimEnd(trimStartChars);
+
+            string tmpStr = correctedPath;
+
+            do
+            {
+                correctedPath = tmpStr;
+                tmpStr = correctedPath.Replace("//", "/");
+            } while (tmpStr.Length != correctedPath.Length);
+
+            correctedPath += '/';
+
+            tbFMODPath.Text = correctedPath;
+
             UpdateFMODPath(tbFMODPath.Text);
         }
     }
