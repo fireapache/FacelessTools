@@ -13,9 +13,9 @@ using Newtonsoft.Json;
 
 namespace FacelessNarrationTool.Forms
 {
-    public partial class FileEditorForm : Form
+    public partial class NarrationFileEditorForm : Form
     {
-        public FileEditorForm()
+        public NarrationFileEditorForm()
         {
             InitializeComponent();
         }
@@ -165,7 +165,7 @@ namespace FacelessNarrationTool.Forms
 
         private void PreviewTable()
         {
-            CSVPreviewerForm csvPreviewer = new CSVPreviewerForm(FNarrationTool.NarrationTable, FNarrationTool.FMODBasePath);
+            NarrationCSVPreviewerForm csvPreviewer = new NarrationCSVPreviewerForm(FNarrationTool.NarrationTable, FNarrationTool.FMODBasePath);
             csvPreviewer.ShowDialog();
         }
 

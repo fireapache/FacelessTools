@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7585C0D7-5F85-4996-BC39-C1F672771361}</ProjectGuid>
+    <ProjectGuid>{91BE153B-8831-4AAE-850E-28B1F81767B1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>FacelessNarrationTool</RootNamespace>
-    <AssemblyName>Faceless Narration Tool</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>Faceless_Localization_Tool</RootNamespace>
+    <AssemblyName>Faceless Localization Tool</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\vinic\Desktop\New folder\</PublishUrl>
+    <PublishUrl>D:\C#\Faceless Tools\Faceless Localization Tool\Builds\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -22,8 +23,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>0.4.0.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -51,10 +52,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>3F8E1197EE7C3AB0A42CCFC04E8135E81F63D6BE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>012C113BE920148AE6056918A4256C2F7BD57DBB</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Faceless Narration Tool_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Faceless Localization Tool_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -63,14 +64,15 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
-      <HintPath>..\packages\CsvHelper.2.16.3.0\lib\net45\CsvHelper.dll</HintPath>
+    <Reference Include="DarkUI">
+      <HintPath>..\Third Party\DarkUI\Release\DarkUI.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,43 +84,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\NarrationCSVPreviewerForm.cs">
+    <Compile Include="Forms\LocalizationFileEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NarrationCSVPreviewerForm.Designer.cs">
-      <DependentUpon>NarrationCSVPreviewerForm.cs</DependentUpon>
+    <Compile Include="Forms\LocalizationFileEditorForm.Designer.cs">
+      <DependentUpon>LocalizationFileEditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NarrationFileEditorForm.cs">
+    <Compile Include="Forms\LocalizationStartupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NarrationFileEditorForm.Designer.cs">
-      <DependentUpon>NarrationFileEditorForm.cs</DependentUpon>
+    <Compile Include="Forms\LocalizationStartupForm.Designer.cs">
+      <DependentUpon>LocalizationStartupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NarrationLineEditorForm.cs">
+    <Compile Include="FLocalizationTool.cs" />
+    <Compile Include="Forms\LocalizationTextBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NarrationLineEditorForm.Designer.cs">
-      <DependentUpon>NarrationLineEditorForm.cs</DependentUpon>
+    <Compile Include="Forms\LocalizationTextBox.Designer.cs">
+      <DependentUpon>LocalizationTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NarrationStartupForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\NarrationStartupForm.Designer.cs">
-      <DependentUpon>NarrationStartupForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FNarrationTool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\NarrationCSVPreviewerForm.resx">
-      <DependentUpon>NarrationCSVPreviewerForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\LocalizationFileEditorForm.resx">
+      <DependentUpon>LocalizationFileEditorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NarrationFileEditorForm.resx">
-      <DependentUpon>NarrationFileEditorForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\LocalizationStartupForm.resx">
+      <DependentUpon>LocalizationStartupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NarrationLineEditorForm.resx">
-      <DependentUpon>NarrationLineEditorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NarrationStartupForm.resx">
-      <DependentUpon>NarrationStartupForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\LocalizationTextBox.resx">
+      <DependentUpon>LocalizationTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -128,9 +121,8 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Faceless Narration Tool_TemporaryKey.pfx" />
+    <None Include="Faceless Localization Tool_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -146,18 +138,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\FacelessLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

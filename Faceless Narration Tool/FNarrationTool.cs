@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FacelessUtils;
-using System.IO;
 using FacelessNarrationTool.Forms;
 
 namespace FacelessNarrationTool
 {
     static class FNarrationTool
     {
-        private static StartupForm _StartupForm;
-        private static FileEditorForm _FileEditorForm;
-        private static LineEditorForm _LineEditorForm;
+        private static NarrationStartupForm _StartupForm;
+        private static NarrationFileEditorForm _FileEditorForm;
+        private static NarrationLineEditorForm _LineEditorForm;
 
         private static string _FMODBasePath = "FMODEvent'/Game/FMOD/Events/";
         public static string FMODBasePath
@@ -42,7 +39,7 @@ namespace FacelessNarrationTool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(_StartupForm = new StartupForm());
+            Application.Run(_StartupForm = new NarrationStartupForm());
         }
 
         internal static void OpenEditor(FNarrationTable narrationTable)
@@ -53,7 +50,7 @@ namespace FacelessNarrationTool
 
                 if (_FileEditorForm == null)
                 {
-                    _FileEditorForm = new FileEditorForm();
+                    _FileEditorForm = new NarrationFileEditorForm();
                 }
 
                 _FileEditorForm.Show();
@@ -70,7 +67,7 @@ namespace FacelessNarrationTool
         {
             List<FNarrationLine> lines = _NarrationTable.Files[fileIndex].Lines;
 
-            _LineEditorForm = new LineEditorForm(lines, (response) =>
+            _LineEditorForm = new NarrationLineEditorForm(lines, (response) =>
             {
                 _NarrationTable.Files[fileIndex].Lines = response;
             });

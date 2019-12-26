@@ -1,6 +1,6 @@
 ﻿namespace FacelessNarrationTool.Forms
 {
-    partial class FileEditorForm
+    partial class NarrationFileEditorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileEditorForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NarrationFileEditorForm));
             this.dgNarrationFiles = new System.Windows.Forms.DataGridView();
             this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lines = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -181,7 +181,7 @@
             this.tsmiRemoveFile.Text = "Remove File";
             this.tsmiRemoveFile.Click += new System.EventHandler(this.tsmiRemoveFile_Click);
             // 
-            // FileEditorForm
+            // NarrationFileEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -194,9 +194,9 @@
             this.MainMenuStrip = this.msEditor;
             this.MaximumSize = new System.Drawing.Size(350, 10000);
             this.MinimumSize = new System.Drawing.Size(350, 300);
-            this.Name = "FileEditorForm";
+            this.Name = "NarrationFileEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Faceless Narration Tool";
+            this.Text = "Narration File Editor";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditorForm_FormClosed);
             this.Load += new System.EventHandler(this.EditorForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgNarrationFiles)).EndInit();

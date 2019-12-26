@@ -1,6 +1,6 @@
 ﻿namespace FacelessNarrationTool
 {
-    partial class StartupForm
+    partial class NarrationStartupForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartupForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NarrationStartupForm));
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -86,7 +86,7 @@
             this.gbOptions.TabStop = false;
             this.gbOptions.Text = "Narration File Options";
             // 
-            // StartupForm
+            // NarrationStartupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -98,7 +98,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(347, 243);
             this.MinimumSize = new System.Drawing.Size(347, 243);
-            this.Name = "StartupForm";
+            this.Name = "NarrationStartupForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Faceless Narration Tool";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StartupForm_FormClosed);

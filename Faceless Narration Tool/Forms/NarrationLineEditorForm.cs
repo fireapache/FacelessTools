@@ -11,16 +11,16 @@ using FacelessUtils;
 
 namespace FacelessNarrationTool
 {
-    public partial class LineEditorForm : Form
+    public partial class NarrationLineEditorForm : Form
     {
         private Action<List<FNarrationLine>> _Callback;
 
-        public LineEditorForm()
+        public NarrationLineEditorForm()
         {
             InitializeComponent();
         }
 
-        public LineEditorForm(List<FNarrationLine> narrationLines, Action<List<FNarrationLine>> callback)
+        public NarrationLineEditorForm(List<FNarrationLine> narrationLines, Action<List<FNarrationLine>> callback)
         {
             InitializeComponent();
 

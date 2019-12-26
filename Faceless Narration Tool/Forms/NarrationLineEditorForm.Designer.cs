@@ -1,6 +1,6 @@
 ﻿namespace FacelessNarrationTool
 {
-    partial class LineEditorForm
+    partial class NarrationLineEditorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,8 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LineEditorForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NarrationLineEditorForm));
             this.dgNarrationLines = new System.Windows.Forms.DataGridView();
+            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TextLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msLineEditor = new System.Windows.Forms.MenuStrip();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSaveLines = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,8 +42,6 @@
             this.cmsNarrationLines = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiAddLine = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRemoveLines = new System.Windows.Forms.ToolStripMenuItem();
-            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TextLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgNarrationLines)).BeginInit();
             this.msLineEditor.SuspendLayout();
             this.cmsNarrationLines.SuspendLayout();
@@ -63,6 +63,26 @@
             this.dgNarrationLines.Size = new System.Drawing.Size(959, 222);
             this.dgNarrationLines.TabIndex = 0;
             this.dgNarrationLines.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgNarrationLines_MouseClick);
+            // 
+            // Time
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Time.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Time.HeaderText = "Time";
+            this.Time.Name = "Time";
+            this.Time.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Time.Width = 60;
+            // 
+            // TextLine
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.TextLine.DefaultCellStyle = dataGridViewCellStyle2;
+            this.TextLine.HeaderText = "Text Line";
+            this.TextLine.Name = "TextLine";
+            this.TextLine.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TextLine.Width = 800;
             // 
             // msLineEditor
             // 
@@ -119,27 +139,7 @@
             this.tsmiRemoveLines.Text = "Remove Line(s)";
             this.tsmiRemoveLines.Click += new System.EventHandler(this.tsmiRemoveLines_Click);
             // 
-            // Time
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Time.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Time.HeaderText = "Time";
-            this.Time.Name = "Time";
-            this.Time.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Time.Width = 60;
-            // 
-            // TextLine
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.TextLine.DefaultCellStyle = dataGridViewCellStyle2;
-            this.TextLine.HeaderText = "Text Line";
-            this.TextLine.Name = "TextLine";
-            this.TextLine.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TextLine.Width = 800;
-            // 
-            // LineEditorForm
+            // NarrationLineEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -151,9 +151,9 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1000, 600);
             this.MinimumSize = new System.Drawing.Size(1000, 300);
-            this.Name = "LineEditorForm";
+            this.Name = "NarrationLineEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Line Editor";
+            this.Text = "Narration Line Editor";
             ((System.ComponentModel.ISupportInitialize)(this.dgNarrationLines)).EndInit();
             this.msLineEditor.ResumeLayout(false);
             this.msLineEditor.PerformLayout();

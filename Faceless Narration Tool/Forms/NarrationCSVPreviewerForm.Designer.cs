@@ -1,6 +1,6 @@
 ﻿namespace FacelessNarrationTool.Forms
 {
-    partial class CSVPreviewerForm
+    partial class NarrationCSVPreviewerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CSVPreviewerForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NarrationCSVPreviewerForm));
             this.dgCSVViewer = new System.Windows.Forms.DataGridView();
             this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FMODEventPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,7 +83,7 @@
             this.Linex.ReadOnly = true;
             this.Linex.Width = 600;
             // 
-            // CSVPreviewerForm
+            // NarrationCSVPreviewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -91,9 +91,9 @@
             this.Controls.Add(this.dgCSVViewer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(850, 250);
-            this.Name = "CSVPreviewerForm";
+            this.Name = "NarrationCSVPreviewerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CSV Previewer";
+            this.Text = "Narration CSV Previewer";
             ((System.ComponentModel.ISupportInitialize)(this.dgCSVViewer)).EndInit();
             this.ResumeLayout(false);
 

@@ -90,4 +90,33 @@ namespace FacelessUtils
         public string Text;
     }
 
+    public class FLocalizationEntry
+    {
+        public string Language;
+        public FLocalizationFile FileContents;
+
+        public FLocalizationEntry(string Language = "None", FLocalizationFile FileContents = null)
+        {
+            this.Language = Language;
+            this.FileContents = FileContents;
+        }
+    }
+
+    public class FLocalizationFile
+    {
+        public int FileVersion;
+        public List<FLocalizationFileEntry> Entries;
+
+        public FLocalizationFile()
+        {
+            Entries = new List<FLocalizationFileEntry>();
+        }
+    }
+
+    public class FLocalizationFileEntry
+    {
+        public string Key;
+        public string Value;
+    }
+
 }

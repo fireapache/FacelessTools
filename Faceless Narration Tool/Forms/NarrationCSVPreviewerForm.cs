@@ -12,17 +12,17 @@ using System.Windows.Forms;
 
 namespace FacelessNarrationTool.Forms
 {
-    public partial class CSVPreviewerForm : Form
+    public partial class NarrationCSVPreviewerForm : Form
     {
         private FNarrationTable _NarrationTable;
         private string _FMODBasePath;
 
-        public CSVPreviewerForm()
+        public NarrationCSVPreviewerForm()
         {
             InitializeComponent();
         }
 
-        public CSVPreviewerForm(FNarrationTable narrationTable, string FMODBasePath)
+        public NarrationCSVPreviewerForm(FNarrationTable narrationTable, string FMODBasePath)
         {
             InitializeComponent();
 

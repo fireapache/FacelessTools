@@ -13,9 +13,9 @@ using FacelessUtils;
 
 namespace FacelessNarrationTool
 {
-    public partial class StartupForm : Form
+    public partial class NarrationStartupForm : Form
     {
-        public StartupForm()
+        public NarrationStartupForm()
         {
             InitializeComponent();
         }
