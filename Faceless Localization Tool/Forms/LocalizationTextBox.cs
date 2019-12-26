@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FacelessLocalizationTool.Forms
@@ -47,5 +40,9 @@ namespace FacelessLocalizationTool.Forms
             btnOK.Enabled = textBox.Text.Length > 0;
         }
 
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            TextResult = textBox.Text;
+        }
     }
 }
