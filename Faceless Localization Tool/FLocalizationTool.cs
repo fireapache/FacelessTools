@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using FacelessLocalizationTool.Forms;
 using FacelessUtils;
@@ -11,9 +12,65 @@ namespace FacelessLocalizationTool
         private static LocalizationStartupForm _StartupForm;
         private static LocalizationFileEditorForm _FileEditorForm;
 
-        public static List<FLocalizationEntry> LocalizationFiles = new List<FLocalizationEntry>();
+        public static List<FLocalizationEntry> LocalizationFiles { get; } = new List<FLocalizationEntry>();
 
-        public static string FilesPath = null;
+        private static string _filesPath = null;
+
+        public static string FilesPath
+        {
+            get
+            {
+                if (Directory.Exists(_filesPath) == false)
+                {
+                    _filesPath = null;
+                }
+
+                if (_filesPath == null)
+                {
+                    FilesPath = GetSaveDirectory();
+                }
+
+                return _filesPath;
+            }
+
+            set
+            {
+                _filesPath = value;
+            }
+        }
+
+        private static string GetSaveDirectory()
+        {
+            string result = null;
+
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult dialogResult = fbd.ShowDialog();
+
+                if (dialogResult == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    result = fbd.SelectedPath;
+                }
+                else if (dialogResult != DialogResult.Cancel)
+                {
+                    MessageBox.Show("Not a valid folder!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return result;
+        }
+
+        public static bool UpdateSaveDirectory()
+        {
+            string path = GetSaveDirectory();
+
+            if (path != null)
+            {
+                FilesPath = path;
+            }
+
+            return path != null;
+        }
 
         /// <summary>
         /// The main entry point for the application.

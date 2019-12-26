@@ -66,8 +66,16 @@ namespace FacelessLocalizationTool.Forms
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, System.EventArgs e)
+        private void SaveCurrentGridView()
         {
+            string directoryPath = FLocalizationTool.FilesPath;
+
+            if (directoryPath == null)
+            {
+                MessageBox.Show("Invalid directory path, can't save file!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             FLocalizationFile locFile = new FLocalizationFile
             {
                 FileVersion = 1,
@@ -88,7 +96,7 @@ namespace FacelessLocalizationTool.Forms
 
             string jsonString = JsonConvert.SerializeObject(locFile, Formatting.Indented);
 
-            string filePath = Path.Combine(FLocalizationTool.FilesPath, cbLanguage.Text + ".json");
+            string filePath = Path.Combine(directoryPath, cbLanguage.Text + ".json");
 
             try
             {
@@ -106,6 +114,11 @@ namespace FacelessLocalizationTool.Forms
             }
         }
 
+        private void saveToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            SaveCurrentGridView();
+        }
+
         private void ShowStateText(string text)
         {
             sslState.Text = text;
@@ -116,6 +129,14 @@ namespace FacelessLocalizationTool.Forms
         {
             sslState.Text = string.Empty;
             timerClearState.Stop();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FLocalizationTool.UpdateSaveDirectory())
+            {
+                SaveCurrentGridView();
+            }
         }
     }
 }
