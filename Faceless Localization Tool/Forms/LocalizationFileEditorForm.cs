@@ -9,6 +9,8 @@ namespace FacelessLocalizationTool.Forms
 {
     public partial class LocalizationFileEditorForm : DarkUI.Forms.DarkForm
     {
+        private int _languageIndex = -1;
+
         public LocalizationFileEditorForm()
         {
             InitializeComponent();
@@ -54,6 +56,8 @@ namespace FacelessLocalizationTool.Forms
 
         private void cbLanguage_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            _ = SaveCurrentGridView(_languageIndex);
+            _languageIndex = cbLanguage.SelectedIndex;
             List<FLocalizationEntry> Entries = FLocalizationTool.LocalizationFiles;
             UpdateGridRows(Entries[cbLanguage.SelectedIndex]);
         }
@@ -66,14 +70,11 @@ namespace FacelessLocalizationTool.Forms
             }
         }
 
-        private void SaveCurrentGridView()
+        private FLocalizationFile SaveCurrentGridView(int index)
         {
-            string directoryPath = FLocalizationTool.FilesPath;
-
-            if (directoryPath == null)
+            if (index < 0 || index >= cbLanguage.Items.Count)
             {
-                MessageBox.Show("Invalid directory path, can't save file!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return null;
             }
 
             FLocalizationFile locFile = new FLocalizationFile
@@ -93,6 +94,27 @@ namespace FacelessLocalizationTool.Forms
                     });
                 }
             }
+
+            FLocalizationTool.LocalizationFiles[index].FileContents = locFile;
+
+            return locFile;
+        }
+
+        private void SerializeCurrentGridView()
+        {
+            string directoryPath = FLocalizationTool.FilesPath;
+
+            if (directoryPath == null)
+            {
+                MessageBox.Show("Invalid directory path, can't save file!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+            dgContent.EndEdit();
+
+            int index = cbLanguage.SelectedIndex;
+
+            var locFile = SaveCurrentGridView(index);
 
             string jsonString = JsonConvert.SerializeObject(locFile, Formatting.Indented);
 
@@ -116,7 +138,7 @@ namespace FacelessLocalizationTool.Forms
 
         private void saveToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            SaveCurrentGridView();
+            SerializeCurrentGridView();
         }
 
         private void ShowStateText(string text)
@@ -135,8 +157,9 @@ namespace FacelessLocalizationTool.Forms
         {
             if (FLocalizationTool.UpdateSaveDirectory())
             {
-                SaveCurrentGridView();
+                SerializeCurrentGridView();
             }
         }
+
     }
 }

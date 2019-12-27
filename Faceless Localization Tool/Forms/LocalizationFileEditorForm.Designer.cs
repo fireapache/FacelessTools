@@ -99,6 +99,7 @@
             this.saveAsToolStripMenuItem,
             this.saveAllToolStripMenuItem});
             this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.fileToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -157,7 +158,7 @@
             // sslState
             // 
             this.sslState.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.sslState.Margin = new System.Windows.Forms.Padding(10, 3, 0, 2);
+            this.sslState.Margin = new System.Windows.Forms.Padding(15, 3, 0, 2);
             this.sslState.Name = "sslState";
             this.sslState.Size = new System.Drawing.Size(33, 16);
             this.sslState.Text = "State";
