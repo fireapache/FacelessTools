@@ -38,9 +38,11 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goToRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbLanguage = new DarkUI.Controls.DarkComboBox();
             this.statusStrip1 = new DarkUI.Controls.DarkStatusStrip();
-            this.sslState = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sslStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerClearState = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgContent)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -64,6 +66,8 @@
             this.dgContent.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgContent.Size = new System.Drawing.Size(776, 391);
             this.dgContent.TabIndex = 0;
+            this.dgContent.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgContent_CellBeginEdit);
+            this.dgContent.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgContent_CellEndEdit);
             this.dgContent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgContent_KeyDown);
             // 
             // Key
@@ -97,7 +101,9 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
-            this.saveAllToolStripMenuItem});
+            this.saveAllToolStripMenuItem,
+            this.goToRowToolStripMenuItem,
+            this.findKeyToolStripMenuItem});
             this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.fileToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -106,6 +112,7 @@
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
@@ -126,12 +133,32 @@
             // 
             // saveAllToolStripMenuItem
             // 
+            this.saveAllToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.saveAllToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
             this.saveAllToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
             this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.saveAllToolStripMenuItem.Text = "Save All";
+            // 
+            // goToRowToolStripMenuItem
+            // 
+            this.goToRowToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.goToRowToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.goToRowToolStripMenuItem.Name = "goToRowToolStripMenuItem";
+            this.goToRowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.goToRowToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.goToRowToolStripMenuItem.Text = "Go To Row";
+            this.goToRowToolStripMenuItem.Click += new System.EventHandler(this.goToRowToolStripMenuItem_Click);
+            // 
+            // findKeyToolStripMenuItem
+            // 
+            this.findKeyToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.findKeyToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.findKeyToolStripMenuItem.Name = "findKeyToolStripMenuItem";
+            this.findKeyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.findKeyToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.findKeyToolStripMenuItem.Text = "Filter Keys";
             // 
             // cbLanguage
             // 
@@ -147,7 +174,7 @@
             this.statusStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.statusStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sslState});
+            this.sslStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 421);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 3);
@@ -155,17 +182,17 @@
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // sslState
+            // sslStatus
             // 
-            this.sslState.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.sslState.Margin = new System.Windows.Forms.Padding(15, 3, 0, 2);
-            this.sslState.Name = "sslState";
-            this.sslState.Size = new System.Drawing.Size(33, 16);
-            this.sslState.Text = "State";
+            this.sslStatus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.sslStatus.Margin = new System.Windows.Forms.Padding(15, 3, 0, 2);
+            this.sslStatus.Name = "sslStatus";
+            this.sslStatus.Size = new System.Drawing.Size(33, 16);
+            this.sslStatus.Text = "State";
             // 
             // timerClearState
             // 
-            this.timerClearState.Interval = 3000;
+            this.timerClearState.Interval = 5000;
             this.timerClearState.Tick += new System.EventHandler(this.timerClearState_Tick);
             // 
             // LocalizationFileEditorForm
@@ -203,8 +230,10 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllToolStripMenuItem;
         private DarkUI.Controls.DarkStatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel sslState;
+        private System.Windows.Forms.ToolStripStatusLabel sslStatus;
         private System.Windows.Forms.Timer timerClearState;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem goToRowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findKeyToolStripMenuItem;
     }
 }
