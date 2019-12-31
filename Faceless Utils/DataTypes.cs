@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace FacelessUtils
+namespace FacelessTools.Utils
 {
     public class FNarrationTable
     {

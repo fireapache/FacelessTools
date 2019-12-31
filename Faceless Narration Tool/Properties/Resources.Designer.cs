@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FacelessNarrationTool.Properties {
+namespace FacelessTools.Narration.Properties {
     using System;
     
     

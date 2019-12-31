@@ -1,4 +1,4 @@
-﻿using FacelessUtils;
+﻿using FacelessTools.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FacelessNarrationTool.Forms
+namespace FacelessTools.Narration.Forms
 {
     public partial class NarrationCSVPreviewerForm : Form
     {

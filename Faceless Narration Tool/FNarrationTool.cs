@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using FacelessUtils;
-using FacelessNarrationTool.Forms;
+using FacelessTools.Utils;
+using FacelessTools.Narration.Forms;
 
-namespace FacelessNarrationTool
+namespace FacelessTools.Narration
 {
     static class FNarrationTool
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FacelessLocalizationTool.Properties
+namespace FacelessTools.Localization.Properties
 {
 
 

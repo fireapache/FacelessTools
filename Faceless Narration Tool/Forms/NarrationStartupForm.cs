@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using FacelessUtils;
+using FacelessTools.Utils;
 
-namespace FacelessNarrationTool
+namespace FacelessTools.Narration
 {
     public partial class NarrationStartupForm : Form
     {
@@ -22,49 +22,13 @@ namespace FacelessNarrationTool
 
         private void LoadNarrationTable()
         {
-            Stream jsonStream = null;
+            var result = FacelessTools.Utils.StaticFunctions.GetNarrationFiles();
 
-            OpenFileDialog jsonFileDialog = new OpenFileDialog()
+            if (result != null)
             {
-                Filter = "Json files (*.json)|*.json",
-                RestoreDirectory = true
-            };
-
-            if (jsonFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    jsonStream = jsonFileDialog.OpenFile();
-
-                    using (jsonStream)
-                    {
-                        FNarrationTool.JsonFilePath = jsonFileDialog.FileName;
-
-                        byte[] fileBytes = new byte[jsonStream.Length];
-
-                        jsonStream.Read(fileBytes, 0, Convert.ToInt32(jsonStream.Length));
-
-                        string fileString = Encoding.UTF8.GetString(fileBytes);
-
-                        List<FNarrationFile> narrationFiles = JsonConvert.DeserializeObject<List<FNarrationFile>> (fileString);
-
-                        if (narrationFiles != null)
-                        {
-                            FNarrationTool.OpenEditor(new FNarrationTable(narrationFiles));
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error: Json file in wrong format!");
-                        }
-                    }
-                    
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                FNarrationTool.JsonFilePath = result.FilePath;
+                FNarrationTool.OpenEditor(new FNarrationTable(result.NarrationFiles));
             }
-
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -82,4 +46,5 @@ namespace FacelessNarrationTool
             FNarrationTool.OpenEditor(new FNarrationTable());
         }
     }
+
 }

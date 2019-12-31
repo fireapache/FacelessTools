@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FacelessUtils;
+using FacelessTools.Utils;
 
-namespace FacelessNarrationTool
+namespace FacelessTools.Narration
 {
     public partial class NarrationLineEditorForm : Form
     {

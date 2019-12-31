@@ -1,4 +1,4 @@
-﻿namespace FacelessLocalizationTool.Forms
+﻿namespace FacelessTools.Localization.Forms
 {
     partial class LocalizationTextBox
     {

@@ -1,4 +1,4 @@
-﻿namespace FacelessNarrationTool.Forms
+﻿namespace FacelessTools.Narration.Forms
 {
     partial class NarrationFileEditorForm
     {

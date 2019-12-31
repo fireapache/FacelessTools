@@ -1,4 +1,4 @@
-﻿namespace FacelessLocalizationTool.Forms
+﻿namespace FacelessTools.Localization.Forms
 {
     partial class LocalizationFileEditorForm
     {
@@ -44,6 +44,7 @@
             this.statusStrip1 = new DarkUI.Controls.DarkStatusStrip();
             this.sslStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerClearState = new System.Windows.Forms.Timer(this.components);
+            this.importNarrationLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgContent)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -103,7 +104,8 @@
             this.saveAsToolStripMenuItem,
             this.saveAllToolStripMenuItem,
             this.goToRowToolStripMenuItem,
-            this.findKeyToolStripMenuItem});
+            this.findKeyToolStripMenuItem,
+            this.importNarrationLinesToolStripMenuItem});
             this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.fileToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -116,7 +118,7 @@
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -127,7 +129,7 @@
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.S)));
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -138,7 +140,7 @@
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
             this.saveAllToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.saveAllToolStripMenuItem.Text = "Save All";
             // 
             // goToRowToolStripMenuItem
@@ -147,7 +149,7 @@
             this.goToRowToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.goToRowToolStripMenuItem.Name = "goToRowToolStripMenuItem";
             this.goToRowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.goToRowToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.goToRowToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.goToRowToolStripMenuItem.Text = "Go To Row";
             this.goToRowToolStripMenuItem.Click += new System.EventHandler(this.goToRowToolStripMenuItem_Click);
             // 
@@ -157,8 +159,9 @@
             this.findKeyToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.findKeyToolStripMenuItem.Name = "findKeyToolStripMenuItem";
             this.findKeyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.findKeyToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.findKeyToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.findKeyToolStripMenuItem.Text = "Filter Keys";
+            this.findKeyToolStripMenuItem.Visible = false;
             // 
             // cbLanguage
             // 
@@ -194,6 +197,15 @@
             // 
             this.timerClearState.Interval = 5000;
             this.timerClearState.Tick += new System.EventHandler(this.timerClearState_Tick);
+            // 
+            // importNarrationLinesToolStripMenuItem
+            // 
+            this.importNarrationLinesToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.importNarrationLinesToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.importNarrationLinesToolStripMenuItem.Name = "importNarrationLinesToolStripMenuItem";
+            this.importNarrationLinesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importNarrationLinesToolStripMenuItem.Text = "Import Narration Lines";
+            this.importNarrationLinesToolStripMenuItem.Click += new System.EventHandler(this.importNarrationLinesToolStripMenuItem_Click);
             // 
             // LocalizationFileEditorForm
             // 
@@ -235,5 +247,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem goToRowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem findKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importNarrationLinesToolStripMenuItem;
     }
 }

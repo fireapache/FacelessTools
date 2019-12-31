@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using FacelessLocalizationTool.Forms;
-using FacelessUtils;
+using FacelessTools.Localization.Forms;
+using FacelessTools.Utils;
 
-namespace FacelessLocalizationTool
+namespace FacelessTools.Localization
 {
     static class FLocalizationTool
     {

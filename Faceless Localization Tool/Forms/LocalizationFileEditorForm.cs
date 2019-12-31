@@ -1,11 +1,12 @@
-﻿using FacelessUtils;
+﻿using FacelessTools.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
-namespace FacelessLocalizationTool.Forms
+namespace FacelessTools.Localization.Forms
 {
     public partial class LocalizationFileEditorForm : DarkUI.Forms.DarkForm
     {
@@ -29,24 +30,19 @@ namespace FacelessLocalizationTool.Forms
             }
         }
 
-        private void UpdateGridRows(FLocalizationEntry Entry)
+        private void AddGridRows(List<FLocalizationFileEntry> fileEntries)
         {
-            string tempStr;
-
-            dgContent.Rows.Clear();
-            keyEntries.Clear();
-
-            foreach (var stringEntry in Entry.FileContents.Entries)
+            foreach (var stringEntry in fileEntries)
             {
                 if (keyEntries.ContainsKey(stringEntry.Key))
                 {
-                    MessageBox.Show("Key \"" + stringEntry.Key + 
-                        "\" duplicated! Keeping the first entry value", "Duplicated Keys!", 
+                    MessageBox.Show("Key \"" + stringEntry.Key +
+                        "\" duplicated! Keeping the first entry value", "Duplicated Keys!",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    tempStr = stringEntry.Value.Replace("\t", "\\t");
+                    string tempStr = stringEntry.Value.Replace("\t", "\\t");
                     tempStr = tempStr.Replace("\n", "\\n");
                     tempStr = tempStr.Replace("\r", string.Empty);
 
@@ -59,13 +55,20 @@ namespace FacelessLocalizationTool.Forms
 
                     keyEntries.Add(stringEntry.Key, rowList);
                 }
-                
-            }
 
-            //foreach (DataGridViewRow row in dgContent.Rows)
-            //{
-            //    row.Cells[0].Style.BackColor = color;
-            //}
+            }
+        }
+
+        private void ClearGridRows()
+        {
+            dgContent.Rows.Clear();
+            keyEntries.Clear();
+        }
+
+        private void UpdateGridRows(FLocalizationEntry Entry)
+        {
+            ClearGridRows();
+            AddGridRows(Entry.FileContents.Entries);
         }
 
         private void LocalizationFileEditorForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -417,6 +420,38 @@ namespace FacelessLocalizationTool.Forms
             {
 
             }
+        }
+
+        private void importNarrationLinesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = FacelessTools.Utils.StaticFunctions.GetNarrationFiles();
+
+            if (result != null)
+            {
+                List<FLocalizationFileEntry> fileEntries = new List<FLocalizationFileEntry>();
+
+                foreach (var narrationFile in result.NarrationFiles)
+                {
+                    var vs = narrationFile.FMODEvent.Split('.');
+                    string keyBase = "LOC_" + vs[vs.Length - 1].ToUpper().Replace("'", "");
+                    int entryIndex = 0;
+
+                    foreach (var narrationLine in narrationFile.Texts)
+                    {
+                        fileEntries.Add(new FLocalizationFileEntry()
+                        {
+                            Key = keyBase + "_" + entryIndex.ToString(),
+                            Value = narrationLine.Text
+                        });
+
+                        entryIndex++;
+                    }
+                }
+
+                AddGridRows(fileEntries);
+
+            }
+
         }
     }
 }

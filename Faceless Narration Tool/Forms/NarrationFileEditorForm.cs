@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FacelessUtils;
+using FacelessTools.Utils;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace FacelessNarrationTool.Forms
+namespace FacelessTools.Narration.Forms
 {
     public partial class NarrationFileEditorForm : Form
     {

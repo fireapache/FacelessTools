@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace FacelessLocalizationTool.Forms
+namespace FacelessTools.Localization.Forms
 {
     public partial class LocalizationTextBox : Form
     {

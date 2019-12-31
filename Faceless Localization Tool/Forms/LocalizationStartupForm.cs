@@ -4,10 +4,10 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using DarkUI.Forms;
-using FacelessUtils;
+using FacelessTools.Utils;
 using Newtonsoft.Json;
 
-namespace FacelessLocalizationTool
+namespace FacelessTools.Localization
 {
     public partial class LocalizationStartupForm : DarkForm
     {
