@@ -7,21 +7,51 @@ using System.Windows.Forms;
 
 namespace FacelessTools.Utils
 {
-    class NarrationFilesResult
+    abstract class ImportResultBase
     {
-        public string FilePath { get; set; }
-        public List<FNarrationFile> NarrationFiles { get; set; }
+        public string filePath { get; set; }
+    }
 
-        public NarrationFilesResult()
+    class NarrationLinesResult : ImportResultBase
+    {
+        public List<FNarrationLine> narrationLines { get; set; }
+
+        public NarrationLinesResult()
         {
-            FilePath = string.Empty;
-            NarrationFiles = new List<FNarrationFile>();
+            filePath = string.Empty;
+            narrationLines = new List<FNarrationLine>();
+        }
+    }
+
+    class TextNotesResult : ImportResultBase
+    {
+        public List<FTextNote> TextNotes { get; set; }
+
+        public TextNotesResult()
+        {
+            filePath = string.Empty;
+            TextNotes = new List<FTextNote>();
         }
     }
 
     class StaticFunctions
     {
-        public static NarrationFilesResult GetNarrationFiles()
+        private class FJsonFile
+        {
+            public string filePath;
+        }
+
+        private class FJsonStream : FJsonFile
+        {
+            public Stream fileStream;
+        }
+
+        private class FJsonContent : FJsonFile
+        {
+            public string content;
+        }
+
+        private static FJsonStream GetJsonStream()
         {
             Stream jsonStream = null;
 
@@ -36,37 +66,6 @@ namespace FacelessTools.Utils
                 try
                 {
                     jsonStream = jsonFileDialog.OpenFile();
-
-                    NarrationFilesResult narrationFilesResult = null;
-
-                    using (jsonStream)
-                    {
-                        byte[] fileBytes = new byte[jsonStream.Length];
-
-                        jsonStream.Read(fileBytes, 0, Convert.ToInt32(jsonStream.Length));
-
-                        string fileString = Encoding.UTF8.GetString(fileBytes);
-
-                        List<FNarrationFile> narrationFiles = JsonConvert.DeserializeObject<List<FNarrationFile>>(fileString);
-
-                        if (narrationFiles != null)
-                        {
-                            narrationFilesResult = new NarrationFilesResult()
-                            {
-                                FilePath = jsonFileDialog.FileName,
-                                NarrationFiles = narrationFiles
-                            };
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error: Json file in wrong format!");
-                        }
-
-                        jsonStream.Close();
-                    }
-
-                    return narrationFilesResult;
-
                 }
                 catch (Exception ex)
                 {
@@ -74,7 +73,114 @@ namespace FacelessTools.Utils
                 }
             }
 
-            return null;
+            return new FJsonStream
+            {
+                filePath = jsonFileDialog.FileName,
+                fileStream = jsonStream
+            };
+        }
+
+        private static FJsonContent GetJsonContent()
+        {
+            string filePath = null;
+            string jsonContent = null;
+
+            var jsonStream = GetJsonStream();
+
+            if (jsonStream != null && jsonStream.fileStream != null)
+            {
+                try
+                {
+                    byte[] fileBytes = new byte[jsonStream.fileStream.Length];
+                    jsonStream.fileStream.Read(fileBytes, 0, Convert.ToInt32(jsonStream.fileStream.Length));
+                    jsonContent = Encoding.UTF8.GetString(fileBytes);
+                    filePath = jsonStream.filePath;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                jsonStream.fileStream.Close();
+            }
+
+            return new FJsonContent
+            {
+                filePath = filePath,
+                content = jsonContent
+            };
+        }
+
+        public static NarrationLinesResult GetNarrationFiles()
+        {
+            NarrationLinesResult narrationFilesResult = null;
+
+            var jsonContent = GetJsonContent();
+
+            if (jsonContent != null && jsonContent.content != null)
+            {
+                List<FNarrationLine> fileNarrationLines = null;
+
+                try
+                {
+                    fileNarrationLines = JsonConvert.DeserializeObject<List<FNarrationLine>>(jsonContent.content);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                if (fileNarrationLines != null)
+                {
+                    narrationFilesResult = new NarrationLinesResult()
+                    {
+                        filePath = jsonContent.filePath,
+                        narrationLines = fileNarrationLines
+                    };
+                }
+                else
+                {
+                    MessageBox.Show("Error: Json file in wrong format!");
+                }
+            }
+
+            return narrationFilesResult;
+        }
+
+        public static TextNotesResult GetTextNotes()
+        {
+            TextNotesResult textNotesResult = null;
+
+            var jsonContent = GetJsonContent();
+
+            if (jsonContent != null && jsonContent.content != null)
+            {
+                List<FTextNote> fileTextNotes = null;
+
+                try
+                {
+                    fileTextNotes = JsonConvert.DeserializeObject<List<FTextNote>>(jsonContent.content);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                if (fileTextNotes != null)
+                {
+                    textNotesResult = new TextNotesResult()
+                    {
+                        filePath = jsonContent.filePath,
+                        TextNotes = fileTextNotes
+                    };
+                }
+                else
+                {
+                    MessageBox.Show("Error: Json file in wrong format!");
+                }
+            }
+
+            return textNotesResult;
         }
 
     }

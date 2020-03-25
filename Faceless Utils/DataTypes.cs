@@ -5,86 +5,90 @@ namespace FacelessTools.Utils
 {
     public class FNarrationTable
     {
-        public string FMODFolderPath;
-        public List<FNarrationEvent> Files;
+        public string SoundAssetsFolderPath;
+        public List<FNarrationSoundAsset> SoundAssets;
 
         public FNarrationTable()
         {
-            Files = new List<FNarrationEvent>();
+            SoundAssets = new List<FNarrationSoundAsset>();
         }
 
-        public FNarrationTable(List<FNarrationFile> narrationFiles)
+        public FNarrationTable(List<FNarrationLine> narrationLines)
         {
-            Files = new List<FNarrationEvent>();
+            SoundAssets = new List<FNarrationSoundAsset>();
 
-            if (narrationFiles.Count > 0)
+            if (narrationLines.Count > 0)
             {
-                FMODFolderPath = "";
+                SoundAssetsFolderPath = "";
                 char[] separators = { '\'', '.', '/' };
 
-                foreach (FNarrationFile file in narrationFiles)
+                foreach (FNarrationLine line in narrationLines)
                 {
-                    if (file.FMODEvent == "None")
+                    if (line.FMODEvent == "None")
                     {
-                        Files.Add(new FNarrationEvent());
+                        SoundAssets.Add(new FNarrationSoundAsset(line));
                     }
                     else
                     {
-                        string[] strPieces = file.FMODEvent.Split(separators);
+                        string[] strPieces = line.FMODEvent.Split(separators);
 
-                        if (FMODFolderPath == "")
+                        if (SoundAssetsFolderPath == "")
                         {
                             for (int i = 5; i < strPieces.Length - 3; i++)
                             {
-                                FMODFolderPath += strPieces[i] + '/';
+                                SoundAssetsFolderPath += strPieces[i] + '/';
                             }
                         }
 
-                        Files.Add(new FNarrationEvent(file, strPieces[strPieces.Length - 2]));
+                        SoundAssets.Add(new FNarrationSoundAsset(line, strPieces[strPieces.Length - 2]));
                     }
                 }
             }
         }
     }
 
-    public class FNarrationEvent
+    public class FNarrationSoundAsset
     {
         public string FileName;
-        public List<FNarrationLine> Lines;
+        public List<FNarrationLinePart> Lines;
 
-        public FNarrationEvent(string defaultFileName = "None")
+        public FNarrationSoundAsset(string defaultFileName = "None")
         {
             FileName = defaultFileName;
-            Lines = new List<FNarrationLine>();
+            Lines = new List<FNarrationLinePart>();
         }
 
-        public FNarrationEvent(FNarrationFile narrationFile, string defaultFileName = "None")
+        public FNarrationSoundAsset(FNarrationLine narrationLine, string defaultFileName = "None")
         {
             FileName = defaultFileName;
-            Lines = narrationFile.Texts;
+            Lines = narrationLine.Texts;
         }
 
     }
     
     public class FNarrationJsonFile
     {
-        public List<FNarrationFile> NarrationFiles;
+        public List<FNarrationLine> NarrationLines;
     }
 
-    public class FNarrationFile
+    public abstract class FDataTableItem
     {
         public string Name;
-        public string FMODEvent;
-        public List<FNarrationLine> Texts;
+    }
 
-        public FNarrationFile()
+    public class FNarrationLine : FDataTableItem
+    {
+        public string FMODEvent;
+        public List<FNarrationLinePart> Texts;
+
+        public FNarrationLine()
         {
-            Texts = new List<FNarrationLine>();
+            Texts = new List<FNarrationLinePart>();
         }
 
     }
 
-    public class FNarrationLine
+    public class FNarrationLinePart
     {
         public float Time;
         public string Text;
@@ -119,4 +123,9 @@ namespace FacelessTools.Utils
         public string Value;
     }
 
+    public class FTextNote : FDataTableItem
+    {
+        public string Title;
+        public string Text;
+    }
 }

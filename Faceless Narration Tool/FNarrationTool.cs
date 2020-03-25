@@ -65,11 +65,11 @@ namespace FacelessTools.Narration
 
         internal static void OpenLineEditor(int fileIndex)
         {
-            List<FNarrationLine> lines = _NarrationTable.Files[fileIndex].Lines;
+            List<FNarrationLinePart> lines = _NarrationTable.SoundAssets[fileIndex].Lines;
 
             _LineEditorForm = new NarrationLineEditorForm(lines, (response) =>
             {
-                _NarrationTable.Files[fileIndex].Lines = response;
+                _NarrationTable.SoundAssets[fileIndex].Lines = response;
             });
 
             _LineEditorForm.ShowDialog();

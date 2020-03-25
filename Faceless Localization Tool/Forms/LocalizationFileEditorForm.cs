@@ -430,19 +430,23 @@ namespace FacelessTools.Localization.Forms
             {
                 List<FLocalizationFileEntry> fileEntries = new List<FLocalizationFileEntry>();
 
-                foreach (var narrationFile in result.NarrationFiles)
+                foreach (var narrationLine in result.narrationLines)
                 {
-                    var vs = narrationFile.FMODEvent.Split('.');
-                    string keyBase = "LOC_" + vs[vs.Length - 1].ToUpper().Replace("'", "");
+                    var vs = narrationLine.FMODEvent.Split('.');
+                    string keyBase = "LOC_NL_" + vs[vs.Length - 1].ToUpper().Replace("'", "");
                     int entryIndex = 0;
 
-                    foreach (var narrationLine in narrationFile.Texts)
+                    foreach (var narrationLinePart in narrationLine.Texts)
                     {
-                        fileEntries.Add(new FLocalizationFileEntry()
+                        var fileEntry = new FLocalizationFileEntry()
                         {
                             Key = keyBase + "_" + entryIndex.ToString(),
-                            Value = narrationLine.Text
-                        });
+                            Value = narrationLinePart.Text
+                        };
+
+                        fileEntries.Add(fileEntry);
+
+                        narrationLinePart.Text = fileEntry.Key;
 
                         entryIndex++;
                     }
@@ -450,8 +454,61 @@ namespace FacelessTools.Localization.Forms
 
                 AddGridRows(fileEntries);
 
+                try
+                {
+                    var jsonStreamWriter = new StreamWriter(result.filePath);
+
+                    using (jsonStreamWriter)
+                    {
+                        jsonStreamWriter.WriteLine(JsonConvert.SerializeObject(result.narrationLines, Formatting.Indented));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
             }
 
+        }
+
+        private void importTextNotesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = FacelessTools.Utils.StaticFunctions.GetTextNotes();
+
+            if (result != null)
+            {
+                List<FLocalizationFileEntry> fileEntries = new List<FLocalizationFileEntry>();
+
+                foreach (var textNote in result.TextNotes)
+                {
+                    var fileEntry = new FLocalizationFileEntry
+                    {
+                        Key = "LOC_" + textNote.Name,
+                        Value = textNote.Text
+                    };
+
+                    textNote.Text = fileEntry.Key;
+
+                    fileEntries.Add(fileEntry);
+                }
+
+                AddGridRows(fileEntries);
+
+                try
+                {
+                    var jsonStreamWriter = new StreamWriter(result.filePath);
+
+                    using (jsonStreamWriter)
+                    {
+                        jsonStreamWriter.WriteLine(JsonConvert.SerializeObject(result.TextNotes, Formatting.Indented));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

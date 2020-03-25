@@ -30,7 +30,7 @@ namespace FacelessTools.Narration.Forms
                 Application.Exit();
             }
 
-            tbFMODPath.Text = narrationTable.FMODFolderPath;
+            tbFMODPath.Text = narrationTable.SoundAssetsFolderPath;
 
             UpdateDataGrid();
             
@@ -49,7 +49,7 @@ namespace FacelessTools.Narration.Forms
             {
                 dgNarrationFiles.Rows.Clear();
 
-                foreach (FNarrationEvent file in narrationTable.Files)
+                foreach (FNarrationSoundAsset file in narrationTable.SoundAssets)
                 {
                     dgNarrationFiles.Rows.Add(file.FileName, file.Lines.Count);
                 }
@@ -78,7 +78,7 @@ namespace FacelessTools.Narration.Forms
                     rowIndex = dgNarrationFiles.CurrentRow.Index;
                 }
                 
-                narrationTable.Files.Insert(rowIndex + 1, new FNarrationEvent() { FileName = "INSERT_NAME" });
+                narrationTable.SoundAssets.Insert(rowIndex + 1, new FNarrationSoundAsset() { FileName = "INSERT_NAME" });
             }
 
             UpdateDataGrid();
@@ -90,7 +90,7 @@ namespace FacelessTools.Narration.Forms
 
             if (narrationTable != null)
             {
-                narrationTable.FMODFolderPath = newPath;
+                narrationTable.SoundAssetsFolderPath = newPath;
             }
         }
 
@@ -101,7 +101,7 @@ namespace FacelessTools.Narration.Forms
             if (narrationTable != null && dgNarrationFiles.CurrentRow != null)
             {
                 int rowIndex = dgNarrationFiles.CurrentRow.Index;
-                narrationTable.Files.RemoveAt(rowIndex);
+                narrationTable.SoundAssets.RemoveAt(rowIndex);
             }
 
             UpdateDataGrid();
@@ -116,20 +116,29 @@ namespace FacelessTools.Narration.Forms
 
                 if (narrationTable != null)
                 {
-                    List<FNarrationEvent> events = narrationTable.Files;
-                    List<FNarrationFile> files = new List<FNarrationFile>();
-                    string FMODFolderPath = narrationTable.FMODFolderPath;
+                    List<FNarrationSoundAsset> soundAssets = narrationTable.SoundAssets;
+                    List<FNarrationLine> lines = new List<FNarrationLine>();
+                    string FMODFolderPath = narrationTable.SoundAssetsFolderPath;
                     string name, FMODPath;
 
-                    for (int i = 0; i < events.Count; i++)
+                    for (int i = 0; i < soundAssets.Count; i++)
                     {
                         name = i.ToString();
-                        FMODPath = FMODBasePath + FMODFolderPath + events[i].FileName + '.' + events[i].FileName + '\'';
-                        files.Add(new FNarrationFile
+
+                        if (soundAssets[i].FileName == "None")
+                        {
+                            FMODPath = "None";
+                        }
+                        else
+                        {
+                            FMODPath = FMODBasePath + FMODFolderPath + soundAssets[i].FileName + '.' + soundAssets[i].FileName + '\'';
+                        }
+                        
+                        lines.Add(new FNarrationLine
                         {
                             Name = name,
                             FMODEvent = FMODPath,
-                            Texts = events[i].Lines
+                            Texts = soundAssets[i].Lines
                         });
                     }
 
@@ -141,7 +150,7 @@ namespace FacelessTools.Narration.Forms
 
                         using (jsonStreamWriter)
                         {
-                            jsonStreamWriter.WriteLine(JsonConvert.SerializeObject(files));
+                            jsonStreamWriter.WriteLine(JsonConvert.SerializeObject(lines, Formatting.Indented));
                         }
                     }
                     catch (Exception ex)
@@ -209,9 +218,9 @@ namespace FacelessTools.Narration.Forms
             {
                 FNarrationTable narrationTable = FNarrationTool.NarrationTable;
 
-                if (narrationTable != null && e.RowIndex >= 0 && e.RowIndex < narrationTable.Files.Count)
+                if (narrationTable != null && e.RowIndex >= 0 && e.RowIndex < narrationTable.SoundAssets.Count)
                 {
-                    narrationTable.Files[e.RowIndex].FileName = dgNarrationFiles.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    narrationTable.SoundAssets[e.RowIndex].FileName = dgNarrationFiles.Rows[e.RowIndex].Cells[0].Value.ToString();
                 }
 
             }

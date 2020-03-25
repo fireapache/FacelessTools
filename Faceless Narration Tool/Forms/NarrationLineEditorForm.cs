@@ -13,14 +13,14 @@ namespace FacelessTools.Narration
 {
     public partial class NarrationLineEditorForm : Form
     {
-        private Action<List<FNarrationLine>> _Callback;
+        private Action<List<FNarrationLinePart>> _Callback;
 
         public NarrationLineEditorForm()
         {
             InitializeComponent();
         }
 
-        public NarrationLineEditorForm(List<FNarrationLine> narrationLines, Action<List<FNarrationLine>> callback)
+        public NarrationLineEditorForm(List<FNarrationLinePart> narrationLines, Action<List<FNarrationLinePart>> callback)
         {
             InitializeComponent();
 
@@ -33,9 +33,9 @@ namespace FacelessTools.Narration
 
         }
 
-        private List<FNarrationLine> BuildNarrationLines()
+        private List<FNarrationLinePart> BuildNarrationLines()
         {
-            List<FNarrationLine> lineList = new List<FNarrationLine>();
+            List<FNarrationLinePart> lineList = new List<FNarrationLinePart>();
             bool validTime, validText;
             float time;
             string text;
@@ -52,7 +52,7 @@ namespace FacelessTools.Narration
                         time = float.Parse(dgNarrationLines.Rows[i].Cells[0].Value.ToString());
                         text = dgNarrationLines.Rows[i].Cells[1].Value.ToString();
 
-                        lineList.Add(new FNarrationLine() { Time = time, Text = text });
+                        lineList.Add(new FNarrationLinePart() { Time = time, Text = text });
                     }
                     
                 }

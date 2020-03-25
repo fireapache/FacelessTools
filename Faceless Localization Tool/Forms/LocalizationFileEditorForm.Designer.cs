@@ -40,11 +40,12 @@
             this.saveAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.goToRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importNarrationLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbLanguage = new DarkUI.Controls.DarkComboBox();
             this.statusStrip1 = new DarkUI.Controls.DarkStatusStrip();
             this.sslStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerClearState = new System.Windows.Forms.Timer(this.components);
-            this.importNarrationLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importTextNotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgContent)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -105,7 +106,8 @@
             this.saveAllToolStripMenuItem,
             this.goToRowToolStripMenuItem,
             this.findKeyToolStripMenuItem,
-            this.importNarrationLinesToolStripMenuItem});
+            this.importNarrationLinesToolStripMenuItem,
+            this.importTextNotesToolStripMenuItem});
             this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.fileToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -163,6 +165,15 @@
             this.findKeyToolStripMenuItem.Text = "Filter Keys";
             this.findKeyToolStripMenuItem.Visible = false;
             // 
+            // importNarrationLinesToolStripMenuItem
+            // 
+            this.importNarrationLinesToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.importNarrationLinesToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.importNarrationLinesToolStripMenuItem.Name = "importNarrationLinesToolStripMenuItem";
+            this.importNarrationLinesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importNarrationLinesToolStripMenuItem.Text = "Import Narration Lines";
+            this.importNarrationLinesToolStripMenuItem.Click += new System.EventHandler(this.importNarrationLinesToolStripMenuItem_Click);
+            // 
             // cbLanguage
             // 
             this.cbLanguage.FormattingEnabled = true;
@@ -198,14 +209,14 @@
             this.timerClearState.Interval = 5000;
             this.timerClearState.Tick += new System.EventHandler(this.timerClearState_Tick);
             // 
-            // importNarrationLinesToolStripMenuItem
+            // importTextNotesToolStripMenuItem
             // 
-            this.importNarrationLinesToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.importNarrationLinesToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.importNarrationLinesToolStripMenuItem.Name = "importNarrationLinesToolStripMenuItem";
-            this.importNarrationLinesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.importNarrationLinesToolStripMenuItem.Text = "Import Narration Lines";
-            this.importNarrationLinesToolStripMenuItem.Click += new System.EventHandler(this.importNarrationLinesToolStripMenuItem_Click);
+            this.importTextNotesToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.importTextNotesToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.importTextNotesToolStripMenuItem.Name = "importTextNotesToolStripMenuItem";
+            this.importTextNotesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importTextNotesToolStripMenuItem.Text = "Import Text Notes";
+            this.importTextNotesToolStripMenuItem.Click += new System.EventHandler(this.importTextNotesToolStripMenuItem_Click);
             // 
             // LocalizationFileEditorForm
             // 
@@ -248,5 +259,6 @@
         private System.Windows.Forms.ToolStripMenuItem goToRowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem findKeyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importNarrationLinesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importTextNotesToolStripMenuItem;
     }
 }

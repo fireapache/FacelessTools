@@ -26,8 +26,8 @@ namespace FacelessTools.Narration
 
             if (result != null)
             {
-                FNarrationTool.JsonFilePath = result.FilePath;
-                FNarrationTool.OpenEditor(new FNarrationTable(result.NarrationFiles));
+                FNarrationTool.JsonFilePath = result.filePath;
+                FNarrationTool.OpenEditor(new FNarrationTable(result.narrationLines));
             }
         }
 

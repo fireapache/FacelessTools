@@ -40,8 +40,8 @@ namespace FacelessTools.Narration.Forms
 
             if (_NarrationTable != null)
             {
-                List<FNarrationEvent> files = _NarrationTable.Files;
-                string FMODFolderPath = _NarrationTable.FMODFolderPath;
+                List<FNarrationSoundAsset> files = _NarrationTable.SoundAssets;
+                string FMODFolderPath = _NarrationTable.SoundAssetsFolderPath;
 
                 for (int i = 0; i < files.Count; i++)
                 {
